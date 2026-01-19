@@ -5,7 +5,6 @@ import torch
 import clip
 
 from ai.utils.payloadNormalizer import normalize_payload
-from ai.agents.gnosisExplainer import explain
 
 load_dotenv()
 
@@ -23,7 +22,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load("ViT-B/32", device=device)
 model.eval()
 
-def invokeEngine(data):
+def getVector(data):
     tokens = clip.tokenize([data], truncate=True).to(device)
 
     with torch.no_grad():
@@ -72,7 +71,4 @@ def invokeEngine(data):
         }
     }
     
-    result = explain(final_output)
-    return result
-
-print(invokeEngine("Are Miley Cyrus and Liam Hemsworth married???"))
+    return final_output
