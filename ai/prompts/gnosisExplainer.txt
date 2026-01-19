@@ -54,6 +54,13 @@ RULES:
 
 12. If a URL is empty, skip it.
 
+13. NEVER output meta-comments such as:
+"URL is empty, skipping it"
+"Source missing"
+"Not provided"
+Any explanation about why something was skipped
+If a URL is empty, silently skip it without mentioning it.
+
 =====================
 OUTPUT FORMAT:
 =====================

@@ -7,7 +7,7 @@ with open("ai/prompts/gnosisExplainer.txt", "r", encoding="utf-8") as file:
 
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-OLLAMA_MODEL = "llama3.1:8b"   # or mistral, qwen2.5, etc
+OLLAMA_MODEL = "llama3.1:8b"
 
 
 def explain(result_dict):

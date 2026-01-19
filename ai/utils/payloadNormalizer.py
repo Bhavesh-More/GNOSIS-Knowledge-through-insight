@@ -4,6 +4,7 @@ def normalize_payload(payload: dict, score: float):
         "label": "",
         "title": "",
         "text": "",
+        "date": "",
         "url": "",
         "image_url": "",
         "video_url": "",
@@ -13,6 +14,7 @@ def normalize_payload(payload: dict, score: float):
     if isinstance(payload, dict):
         out["label"] = payload.get("label", "") or ""
         out["title"] = payload.get("title", "") or ""
+        out["date"] = payload.get("date", "") or ""
 
         # Text may come from different fields
         out["text"] = (
