@@ -3,7 +3,8 @@ from ai.agents.explainer import explain
 from ai.utils.confidenceScore import getConfidenceScore
 from ai.agents.queryTransformer import transformQuery
 from ai.agents.evidence import getEvidence
-import json
+from ai.utils.vectorSort import sortVectors
+from ai.agents.impacter import getFutureImpacts
 
 def invokeEngine(data):
     query = transformQuery(data)
@@ -19,12 +20,17 @@ def invokeEngine(data):
     # print(json.dumps(summary, indent=2, ensure_ascii=False))
     
     evidence = getEvidence(query)
+    sortedVector = sortVectors(evidence)
+    impacts = getFutureImpacts(evidence)
     
     return {
         "final_verdict": vectors["final_verdict"],
         "confidence_score": confidence,
         "summary": summary,
-        "evidence": evidence
+        "evidence": evidence,
+        "video_url": vectors["video"]["items"][0]["url"],
+        "track": sortedVector,
+        "impacts": impacts
     }
 
-print(invokeEngine("did rahul gandhi become prime minister of india in 2024?"))
+print(invokeEngine("Did sonu sood scammed indian people during covid 19 campaign by taking all the money by himself???"))
